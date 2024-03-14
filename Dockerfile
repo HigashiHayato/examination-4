@@ -4,7 +4,7 @@ COPY . .
 RUN mvn clean package -Dmaven.test.skip=true
 
 FROM amazoncorretto:17
-WORKDIR /examination3-2
+WORKDIR /examination-4
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
