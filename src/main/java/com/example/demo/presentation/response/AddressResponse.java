@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public record AddressResponse(
     @JsonProperty("id") Integer id,
-    @JsonProperty("zipCode") String zipCode,
+    @JsonProperty("zip_code") String zipCode,
     @JsonProperty("prefecture") String prefecture,
     @JsonProperty("city") String city,
-    @JsonProperty("streetAddress") String streetAddress
+    @JsonProperty("street_address") String streetAddress
 ) {
 
   /**
