@@ -2,6 +2,7 @@ package com.example.demo.infrastructure;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.example.demo.domain.Address;
 import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.connection.ConnectionHolder;
 import com.github.database.rider.core.api.dataset.DataSet;
@@ -18,12 +19,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @DBUnit
 class AddressMapperTest {
 
-  private static final String DB_URL = "jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
-  private static final String DB_USER = "sa";
-  private static final String DB_PASSWORD = "sa";
-
-  private static final ConnectionHolder connectionHolder =
-      () -> DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+//  private static final String DB_URL = "jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
+//  private static final String DB_USER = "sa";
+//  private static final String DB_PASSWORD = "sa";
+//
+//  private static final ConnectionHolder connectionHolder =
+//      () -> DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
   @Autowired
   AddressMapper sut;
