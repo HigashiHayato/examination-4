@@ -50,9 +50,9 @@ class AddressControllerTest {
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.addresses[0].id").value(1))
-        .andExpect(jsonPath("$.addresses[0].title").value("1000000"))
-        .andExpect(jsonPath("$.addresses[0].author").value("東京都"))
-        .andExpect(jsonPath("$.addresses[0].publisher").value("新宿区"))
-        .andExpect(jsonPath("$.addresses[0].price").value("中落合"));
+        .andExpect(jsonPath("$.addresses[0].zipCode").value("1000000"))
+        .andExpect(jsonPath("$.addresses[0].prefecture").value("東京都"))
+        .andExpect(jsonPath("$.addresses[0].city").value("新宿区"))
+        .andExpect(jsonPath("$.addresses[0].streetAddress").value("中落合"));
   }
 }
