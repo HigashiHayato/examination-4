@@ -3,11 +3,17 @@ server:
 
 spring:
   datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/address_db
-    username: appuser
-    password: appuser
-    initialization-mode: always
+    url: jdbc:postgresql://dpg-cnpga98l5elc73cmsij0-a.singapore-postgres.render.com:5432/examination_4_db
+    username: examination_4_db_user
+    password: z6GlslUcPQ5nIfHOYBcwl3q9hLxWp7qd
+
+#  datasource:
+#    driverClassName: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/address_db
+#    username: appuser
+#    password: appuser
+#    initialization-mode: always
+
   flyway:
     enable: true
     baseline-on-migrate: true
