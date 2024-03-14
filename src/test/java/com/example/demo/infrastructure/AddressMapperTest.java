@@ -35,7 +35,7 @@ class AddressMapperTest {
   void 全件取得できる() {
     // setup
     List<Address> expected = List.of(
-        new Address(1, "1000000", "東京都", "新宿区", "中落合")
+        new Address("1", "1000000", "東京都", "新宿区", "中落合")
     );
 
     // execute
