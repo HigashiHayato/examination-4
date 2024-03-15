@@ -23,4 +23,14 @@ public class AddressService {
   public List<Address> retrieveAll() {
     return mapper.selectAll();
   }
+
+  /**
+   * 指定された ID の Address を取得します.
+   *
+   * @param id 取得対象の Address の ID
+   * @return 指定された ID の Address
+   */
+  public Address retrieve(String id) {
+    return mapper.select(id);
+  }
 }
