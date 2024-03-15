@@ -1,5 +1,8 @@
 package com.example.demo.application;
 
+import static java.util.Objects.isNull;
+
+import com.example.demo.application.exception.AddressNotFoundException;
 import com.example.demo.domain.Address;
 import com.example.demo.infrastructure.AddressMapper;
 import java.util.List;
@@ -29,8 +32,16 @@ public class AddressService {
    *
    * @param id 取得対象の Address の ID
    * @return 指定された ID の Address
+   * @throws AddressNotFoundException 指定された ID の Address が存在しない場合
    */
   public Address retrieve(String id) {
-    return mapper.select(id);
+
+    Address address = mapper.select(id);
+
+    if (isNull(address)) {
+      throw new AddressNotFoundException(id);
+    }
+
+    return address;
   }
 }

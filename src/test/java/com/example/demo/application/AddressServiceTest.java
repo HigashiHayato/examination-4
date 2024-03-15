@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import com.example.demo.application.exception.AddressNotFoundException;
 import com.example.demo.domain.Address;
 import com.example.demo.infrastructure.AddressMapper;
 import java.util.List;
