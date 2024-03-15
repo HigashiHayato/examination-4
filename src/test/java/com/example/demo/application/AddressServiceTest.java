@@ -1,6 +1,7 @@
 package com.example.demo.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import com.example.demo.domain.Address;
@@ -42,5 +43,17 @@ class AddressServiceTest {
 
     // assert
     assertEquals(addressList, actual);
+  }
+
+  @Test
+  void 選択した住所idが存在する場合() {
+    // setup
+    when(mapper.select(any())).thenReturn(ADDRESS);
+
+    // execute
+    Address actual = sut.retrieve("1");
+
+    // assert
+    assertEquals(ADDRESS, actual);
   }
 }
