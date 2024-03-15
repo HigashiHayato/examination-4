@@ -21,6 +21,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 class AddressControllerTest {
 
+  private final Address ADDRESS =
+      new Address("1", "1000000", "東京都", "新宿区", "中落合");
+
   @Autowired
   MockMvc mockMvc;
 
@@ -40,7 +43,7 @@ class AddressControllerTest {
   void ゲットリクエストで得た全件データをjsonにして返す() throws Exception {
     // setup
     List<Address> addressList = List.of(
-        new Address("1", "1000000", "東京都", "新宿区", "中落合")
+        ADDRESS
     );
 
     when(addressService.retrieveAll()).thenReturn(addressList);
@@ -54,5 +57,22 @@ class AddressControllerTest {
         .andExpect(jsonPath("$.addresses[0].prefecture").value("東京都"))
         .andExpect(jsonPath("$.addresses[0].city").value("新宿区"))
         .andExpect(jsonPath("$.addresses[0].street_address").value("中落合"));
+  }
+
+  @Test
+  void ゲットリクエストで指定したデータをjsonにして返す() throws Exception {
+    // setup
+    when(addressService.retrieve("1")).thenReturn(ADDRESS);
+
+    // execute & assert
+    mockMvc.perform(MockMvcRequestBuilders.get("/v1/addresses/1"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("id").value("1"))
+        .andExpect(jsonPath("zip_code").value("1000000"))
+        .andExpect(jsonPath("prefecture").value("東京都"))
+        .andExpect(jsonPath("city").value("新宿区"))
+        .andExpect(jsonPath("street_address").value("中落合"));
+
   }
 }
