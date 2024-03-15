@@ -4,12 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 import com.example.demo.application.exception.AddressNotFoundException;
+import com.example.demo.presentation.response.AddressErrorResponse;
 import java.util.List;
 import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
 
 class AddressNotFoundExceptionHandlerTest {
 
