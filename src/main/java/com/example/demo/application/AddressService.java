@@ -21,6 +21,6 @@ public class AddressService {
    * @return 全ての Address のリスト
    */
   public List<Address> retrieveAll() {
-      return mapper.selectAll();
+    return mapper.selectAll();
   }
 }

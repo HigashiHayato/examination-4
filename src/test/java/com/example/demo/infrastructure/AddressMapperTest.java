@@ -19,6 +19,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @DBUnit
 class AddressMapperTest {
 
+  private static final Address ADDRESS =
+      new Address("1", "1000000", "東京都", "新宿区", "中落合");
+
 //  private static final String DB_URL = "jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
 //  private static final String DB_USER = "sa";
 //  private static final String DB_PASSWORD = "sa";
@@ -35,7 +38,7 @@ class AddressMapperTest {
   void 全件取得できる() {
     // setup
     List<Address> expected = List.of(
-        new Address("1", "1000000", "東京都", "新宿区", "中落合")
+        ADDRESS
     );
 
     // execute
@@ -43,5 +46,17 @@ class AddressMapperTest {
 
     // assert
     assertEquals(expected, actual);
+  }
+
+  @Test
+  @DataSet(value = "datasets/setup/address.yml")
+  @ExpectedDataSet(value = "datasets/expected/address.yml")
+  void idを指定してデータを取得できる() {
+    // setup
+    // execute
+    Address actual = sut.select("1");
+
+    // assert
+    assertEquals(ADDRESS, actual);
   }
 }
