@@ -1,0 +1,43 @@
+package com.example.demo.application.exception;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
+import java.util.List;
+import java.util.Objects;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
+class AddressNotFoundExceptionHandlerTest {
+
+  @InjectMocks
+  AddressNotFoundExceptionHandler sut;
+
+  @BeforeEach
+  public void setup() {
+    MockitoAnnotations.openMocks(this);
+  }
+
+  @Test
+  void 正しいレスポンスが返される() {
+    // setup
+    AddressNotFoundException exception = new AddressNotFoundException("99");
+
+    AddressErrorResponse expected = new AddressErrorResponse(
+        "0003",
+        "specified book [id = 99] is not found.",
+        List.of()
+    );
+    // execute
+    ResponseEntity<AddressErrorResponse> actual = sut.handleAddressNotFoundException(exception);
+
+    // assert
+    assertThat(Objects.requireNonNull(actual.getBody()).code()).isEqualTo(expected.code());
+    assertThat(actual.getBody().message()).isEqualTo(expected.message());
+    assertThat(actual.getBody().details()).isEmpty();
+    assertThat(actual.getStatusCode()).isEqualTo(BAD_REQUEST);
+  }
+
+}
