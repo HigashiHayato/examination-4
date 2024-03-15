@@ -1,8 +1,9 @@
-package com.example.demo.application.exception;
+package com.example.demo.presentation.exception;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
+import com.example.demo.application.exception.AddressNotFoundException;
 import java.util.List;
 import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,5 +40,4 @@ class AddressNotFoundExceptionHandlerTest {
     assertThat(actual.getBody().details()).isEmpty();
     assertThat(actual.getStatusCode()).isEqualTo(BAD_REQUEST);
   }
-
 }
