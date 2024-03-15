@@ -1,5 +1,6 @@
 package com.example.demo.application;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -55,5 +56,17 @@ class AddressServiceTest {
 
     // assert
     assertEquals(ADDRESS, actual);
+  }
+
+  @Test
+  void 選択した住所idが存在しない場合() {
+    // setup
+    when(mapper.select(any())).thenReturn(null);
+
+    // execute
+    // assert
+    assertThatThrownBy(() -> sut.retrieve("99"))
+        .isInstanceOf(AddressNotFoundException.class)
+        .hasMessage("99");
   }
 }
