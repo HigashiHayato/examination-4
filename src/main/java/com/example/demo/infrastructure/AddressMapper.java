@@ -17,4 +17,13 @@ public interface AddressMapper {
    */
   List<Address> selectAll();
 
+  /**
+   * 指定された ID の Address を取得します.
+   *
+   * @param id 取得する Address の ID
+   * @return 指定された ID の Address オブジェクト
+   */
+  Address select(String id);
+
+
 }

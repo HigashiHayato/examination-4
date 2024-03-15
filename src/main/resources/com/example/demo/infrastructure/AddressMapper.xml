@@ -6,4 +6,9 @@
         SELECT * FROM addresses
     </select>
 
+    <select id="select" resultType="com.example.demo.domain.Address">
+        SELECT * FROM addresses
+        WHERE id = #{id};
+    </select>
+
 </mapper>
