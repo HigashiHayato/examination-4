@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import com.example.demo.application.dto.RequestAddressDto;
 import com.example.demo.application.exception.AddressNotFoundException;
 import com.example.demo.domain.Address;
 import com.example.demo.infrastructure.AddressMapper;
@@ -18,7 +19,7 @@ import org.mockito.MockitoAnnotations;
 class AddressServiceTest {
 
   private final Address ADDRESS =
-      new Address("1", "1000000", "東京都", "新宿区", "中落合");
+      new Address(1, "1000000", "東京都", "新宿区", "中落合");
 
   @InjectMocks
   private AddressService sut;
@@ -74,15 +75,15 @@ class AddressServiceTest {
   @Test
   void データを挿入した際挿入したidが返される() {
     // setup
-    when(mapper.getMaxId()).thenReturn("88");
+    when(mapper.getMaxId()).thenReturn(88);
 
-    Address address = new Address("89", "1000000", "東京都", "新宿区", "中落合");
+    RequestAddressDto address = new RequestAddressDto("1000000", "東京都", "新宿区", "中落合");
 
     // execute
-    String actual = sut.register(ADDRESS);
+    Integer actual = sut.register(address);
 
     // assert
-    assertEquals("89", actual);
+    assertEquals(89, actual);
   }
 
 }

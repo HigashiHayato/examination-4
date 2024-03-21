@@ -22,4 +22,8 @@
         )
     </insert>
 
+    <select id="getMaxId" resultType="Integer">
+        SELECT MAX(id) FROM addresses;
+    </select>
+
 </mapper>

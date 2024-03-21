@@ -1,20 +1,17 @@
-package com.example.demo.domain;
+package com.example.demo.application.dto;
 
 /**
- * 住所エンティティを表すレコードクラスです.
+ * リクエスト処理における住所を表すレコードクラスです.
  *
- * @param id            ID
  * @param zipCode       郵便番号
  * @param prefecture    都道府県
  * @param city          市区
  * @param streetAddress 以降の住所
  */
-public record Address(
-    Integer id,
+public record RequestAddressDto(
     String zipCode,
     String prefecture,
     String city,
     String streetAddress
 ) {
-
 }

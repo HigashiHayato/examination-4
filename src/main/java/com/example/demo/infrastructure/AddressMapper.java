@@ -32,4 +32,11 @@ public interface AddressMapper {
    * @return 挿入が成功した場合は1、それ以外の場合は0
    */
   int insert(Address address);
+
+  /**
+   * テーブル内の最大の Address ID を取得します.
+   *
+   * @return 最大の Address ID
+   */
+  Integer getMaxId();
 }

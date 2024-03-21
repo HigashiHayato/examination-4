@@ -2,6 +2,7 @@ package com.example.demo.application;
 
 import static java.util.Objects.isNull;
 
+import com.example.demo.application.dto.RequestAddressDto;
 import com.example.demo.application.exception.AddressNotFoundException;
 import com.example.demo.domain.Address;
 import com.example.demo.infrastructure.AddressMapper;
@@ -43,5 +44,27 @@ public class AddressService {
     }
 
     return address;
+  }
+
+  /**
+   * 新しい Address を登録します.
+   *
+   * @param address 登録する PostRequestAddressDto
+   * @return 挿入した住所の ID
+   */
+  public Integer register(RequestAddressDto address) {
+
+    Integer nextId = mapper.getMaxId() + 1;
+
+    mapper.insert(
+        new Address(
+            nextId,
+            address.zipCode(),
+            address.prefecture(),
+            address.city(),
+            address.streetAddress())
+    );
+
+    return nextId;
   }
 }

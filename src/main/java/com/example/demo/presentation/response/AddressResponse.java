@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * レスポンスとして返される住所情報を表すレコードクラスです.
  */
 public record AddressResponse(
-    @JsonProperty("id") String id,
+    @JsonProperty("id") Integer id,
     @JsonProperty("zip_code") String zipCode,
     @JsonProperty("prefecture") String prefecture,
     @JsonProperty("city") String city,
