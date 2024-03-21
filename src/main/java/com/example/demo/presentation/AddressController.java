@@ -1,14 +1,22 @@
 package com.example.demo.presentation;
 
 import com.example.demo.application.AddressService;
+import com.example.demo.presentation.request.PostAddressRequest;
 import com.example.demo.presentation.response.AddressResponse;
 import com.example.demo.presentation.response.AddressesResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * Address 関連のリクエストを処理するコントローラークラスです.
@@ -40,5 +48,29 @@ public class AddressController {
   @ResponseStatus(HttpStatus.OK)
   public AddressResponse get(@PathVariable String id) {
     return AddressResponse.convertToAddressResponse(addressService.retrieve(id));
+  }
+
+  /**
+   * 新しい Address を登録するエンドポイントです.
+   *
+   * @param address    登録する PostAddressRequest オブジェクト
+   * @param request HttpServletRequest
+   * @return ResponseEntity オブジェクト
+   */
+  @PostMapping("v1/addresses")
+  @ResponseStatus(HttpStatus.CREATED)
+  public ResponseEntity<Void> post(
+      @RequestBody @Validated PostAddressRequest address,
+      HttpServletRequest request
+  ) {
+    Integer nextId = addressService.register(address.convertToDto());
+
+    URI uri = UriComponentsBuilder
+        .fromUriString(request.getRequestURL().toString())
+        .pathSegment(String.valueOf(nextId))
+        .build()
+        .toUri();
+
+    return ResponseEntity.created(uri).build();
   }
 }

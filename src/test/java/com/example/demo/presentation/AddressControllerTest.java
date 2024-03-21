@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.example.demo.application.AddressService;
 import com.example.demo.domain.Address;
+import com.example.demo.presentation.request.PostAddressRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
