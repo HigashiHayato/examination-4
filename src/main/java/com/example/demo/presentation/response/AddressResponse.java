@@ -28,7 +28,7 @@ public record AddressResponse(
    */
   public static AddressResponse convertToAddressResponse(Address address) {
     return new AddressResponse(
-        address.id(),
+        String.valueOf(address.id()),
         address.zipCode(),
         address.prefecture(),
         address.city(),

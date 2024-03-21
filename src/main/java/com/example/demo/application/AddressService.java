@@ -58,7 +58,7 @@ public class AddressService {
 
     mapper.insert(
         new Address(
-            nextId,
+            Integer.parseInt(nextId),
             address.zipCode(),
             address.prefecture(),
             address.city(),
@@ -83,7 +83,7 @@ public class AddressService {
     }
 
     Address postAddress = new Address(
-        id,
+        Integer.parseInt(id),
         isNull(address.zipCode()) ? existingAddress.zipCode() : address.zipCode(),
         isNull(address.prefecture()) ? existingAddress.prefecture() : address.prefecture(),
         isNull(address.city()) ? existingAddress.city() : address.city(),

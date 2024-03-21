@@ -21,7 +21,7 @@ import org.mockito.MockitoAnnotations;
 class AddressServiceTest {
 
   private final Address ADDRESS =
-      new Address("1", "1000000", "東京都", "新宿区", "中落合");
+      new Address(1, "1000000", "東京都", "新宿区", "中落合");
 
   private final RequestAddressDto REQUEST_ADDRESS_DTO =
       new RequestAddressDto("1000000", "東京都", "新宿区", "中落合");

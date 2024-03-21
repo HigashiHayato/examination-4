@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 class AddressControllerTest {
 
   private final Address ADDRESS =
-      new Address("1", "1000000", "東京都", "新宿区", "中落合");
+      new Address(1, "1000000", "東京都", "新宿区", "中落合");
 
   private final PostAddressRequest POST_ADDRESS_REQUEST =
       new PostAddressRequest("1000000", "東京都", "豊島区", "長崎");
