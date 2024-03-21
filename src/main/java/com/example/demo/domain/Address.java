@@ -10,7 +10,7 @@ package com.example.demo.domain;
  * @param streetAddress 以降の住所
  */
 public record Address(
-    Integer id,
+    String id,
     String zipCode,
     String prefecture,
     String city,

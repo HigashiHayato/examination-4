@@ -19,7 +19,7 @@ import org.mockito.MockitoAnnotations;
 class AddressServiceTest {
 
   private final Address ADDRESS =
-      new Address(1, "1000000", "東京都", "新宿区", "中落合");
+      new Address("1", "1000000", "東京都", "新宿区", "中落合");
 
   @InjectMocks
   private AddressService sut;
@@ -80,10 +80,10 @@ class AddressServiceTest {
     RequestAddressDto address = new RequestAddressDto("1000000", "東京都", "新宿区", "中落合");
 
     // execute
-    Integer actual = sut.register(address);
+    String actual = sut.register(address);
 
     // assert
-    assertEquals(89, actual);
+    assertEquals("89", actual);
   }
 
 }

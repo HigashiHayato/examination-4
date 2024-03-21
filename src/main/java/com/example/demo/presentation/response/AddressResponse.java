@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @param streetAddress 以降の住所
  */
 public record AddressResponse(
-    @JsonProperty("id") Integer id,
+    @JsonProperty("id") String id,
     @JsonProperty("zip_code") String zipCode,
     @JsonProperty("prefecture") String prefecture,
     @JsonProperty("city") String city,

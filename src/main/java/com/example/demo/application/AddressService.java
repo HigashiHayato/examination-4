@@ -52,9 +52,9 @@ public class AddressService {
    * @param address 登録する PostRequestAddressDto
    * @return 挿入した住所の ID
    */
-  public Integer register(RequestAddressDto address) {
+  public String register(RequestAddressDto address) {
 
-    Integer nextId = mapper.getMaxId() + 1;
+    String nextId = String.valueOf(mapper.getMaxId() + 1);
 
     mapper.insert(
         new Address(

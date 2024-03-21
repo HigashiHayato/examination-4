@@ -63,11 +63,11 @@ public class AddressController {
       @RequestBody @Validated PostAddressRequest address,
       HttpServletRequest request
   ) {
-    Integer nextId = addressService.register(address.convertToDto());
+    String nextId = addressService.register(address.convertToDto());
 
     URI uri = UriComponentsBuilder
         .fromUriString(request.getRequestURL().toString())
-        .pathSegment(String.valueOf(nextId))
+        .pathSegment(nextId)
         .build()
         .toUri();
 
