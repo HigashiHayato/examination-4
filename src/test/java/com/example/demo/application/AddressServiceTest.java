@@ -70,4 +70,19 @@ class AddressServiceTest {
         .isInstanceOf(AddressNotFoundException.class)
         .hasMessage("99");
   }
+
+  @Test
+  void データを挿入した際挿入したidが返される() {
+    // setup
+    when(mapper.getMaxId()).thenReturn("88");
+
+    Address address = new Address("89", "1000000", "東京都", "新宿区", "中落合");
+
+    // execute
+    String actual = sut.register(ADDRESS);
+
+    // assert
+    assertEquals("89", actual);
+  }
+
 }
