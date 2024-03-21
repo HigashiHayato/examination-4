@@ -60,7 +60,7 @@ class AddressMapperTest {
 
   @Test
   @DataSet(value = "datasets/setup/address.yml")
-  @ExpectedDataSet(value = "datasets/expected/address_post.yml")
+  @ExpectedDataSet(value = "datasets/expected/address-post.yml")
   void テーブルに1行データが挿入される() {
     // setup
     Address address = new Address("2", "1000000", "東京都", "豊島区", "長崎");
@@ -70,9 +70,11 @@ class AddressMapperTest {
   }
 
   @Test
+  @DataSet(value = "datasets/setup/address.yml")
+  @ExpectedDataSet(value = "datasets/expected/address-patch.yml")
   void テーブルの行を更新できる場合() {
     // setup
-    Address address = new Address("2", "1000000", "神奈川県", "横浜市", "旭区");
+    Address address = new Address("1", "1000000", "神奈川県", "横浜市", "旭区");
 
     // execute
     // assert

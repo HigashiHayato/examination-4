@@ -39,4 +39,12 @@ public interface AddressMapper {
    * @return 最大の Address ID
    */
   Integer getMaxId();
+
+  /**
+   * 指定された Address を更新します.
+   *
+   * @param address 更新する Address オブジェクト
+   * @return 更新が成功した場合は1、それ以外の場合は0
+   */
+  int update(Address address);
 }

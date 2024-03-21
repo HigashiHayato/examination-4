@@ -1,0 +1,6 @@
+addresses:
+  - id: 1
+    zip_code: "1000000"
+    prefecture: "神奈川県"
+    city: "横浜市"
+    street_address: "旭区"
