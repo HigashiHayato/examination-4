@@ -57,4 +57,15 @@ class AddressMapperTest {
     // assert
     assertEquals(ADDRESS, actual);
   }
+
+  @Test
+  @DataSet(value = "datasets/setup/address.yml")
+  @ExpectedDataSet(value = "datasets/expected/address_post.yml")
+  void テーブルに1行データが挿入される() {
+    // setup
+    Address address = new Address("2", "1000000", "東京都", "豊島区", "長崎");
+
+    // execute & assert
+    assertEquals(1, sut.insert(ADDRESS));
+  }
 }
