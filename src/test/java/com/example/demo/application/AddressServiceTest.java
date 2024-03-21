@@ -101,4 +101,15 @@ class AddressServiceTest {
     verify(mapper, times(1)).update(ADDRESS);
   }
 
+  @Test
+  void 行を更新する際指定したidがテーブルに存在しない場合() {
+    // setup
+    when(mapper.select("99")).thenReturn(null);
+
+    // execute
+    // assert
+    assertThatThrownBy(() -> sut.update(REQUEST_ADDRESS_DTO, "99"))
+        .isInstanceOf(AddressNotFoundException.class)
+        .hasMessage("99");
+  }
 }
