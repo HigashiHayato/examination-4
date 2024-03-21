@@ -97,4 +97,14 @@ class AddressControllerTest {
         .andExpect(status().isCreated())
         .andExpect(header().string("Location", "http://localhost/v1/addresses/89"));
   }
+
+  @Test
+  void 更新リクエストで指定したidが存在した場合() throws Exception {
+    // setup & execute & assert
+    mockMvc.perform(MockMvcRequestBuilders.patch("/v1/addresses/2")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(new ObjectMapper().writeValueAsString(POST_ADDRESS_REQUEST))
+        )
+        .andExpect(status().isNoContent());
+  }
 }
