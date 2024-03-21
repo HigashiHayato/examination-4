@@ -3,6 +3,8 @@ package com.example.demo.application;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.example.demo.application.dto.RequestAddressDto;
@@ -20,6 +22,9 @@ class AddressServiceTest {
 
   private final Address ADDRESS =
       new Address("1", "1000000", "東京都", "新宿区", "中落合");
+
+  private final RequestAddressDto REQUEST_ADDRESS_DTO =
+      new RequestAddressDto("1000000", "東京都", "新宿区", "中落合");
 
   @InjectMocks
   private AddressService sut;
@@ -77,13 +82,23 @@ class AddressServiceTest {
     // setup
     when(mapper.getMaxId()).thenReturn(88);
 
-    RequestAddressDto address = new RequestAddressDto("1000000", "東京都", "新宿区", "中落合");
-
     // execute
-    String actual = sut.register(address);
+    String actual = sut.register(REQUEST_ADDRESS_DTO);
 
     // assert
     assertEquals("89", actual);
+  }
+
+  @Test
+  void 行を更新する際指定したidがテーブルに存在する場合() {
+    // setup
+    when(mapper.select("1")).thenReturn(ADDRESS);
+
+    // execute
+    sut.update(REQUEST_ADDRESS_DTO, "1");
+
+    // assert
+    verify(mapper, times(1)).update(REQUEST_ADDRESS_DTO);
   }
 
 }
