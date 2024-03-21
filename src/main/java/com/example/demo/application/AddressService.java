@@ -67,4 +67,25 @@ public class AddressService {
 
     return nextId;
   }
+
+  /**
+   * 指定された ID の Address を更新します.
+   *
+   * @param address 更新する Address の情報
+   * @param id      更新対象の Address の ID
+   */
+  public void update(RequestAddressDto address, String id) {
+
+    Address existingAddress = mapper.select(id);
+
+    Address postAddress = new Address(
+        id,
+        isNull(address.zipCode()) ? existingAddress.zipCode() : address.zipCode(),
+        isNull(address.prefecture()) ? existingAddress.prefecture() : address.prefecture(),
+        isNull(address.city()) ? existingAddress.city() : address.city(),
+        isNull(address.streetAddress()) ? existingAddress.streetAddress() : address.streetAddress()
+    );
+
+    mapper.update(postAddress);
+  }
 }

@@ -98,7 +98,7 @@ class AddressServiceTest {
     sut.update(REQUEST_ADDRESS_DTO, "1");
 
     // assert
-    verify(mapper, times(1)).update(REQUEST_ADDRESS_DTO);
+    verify(mapper, times(1)).update(ADDRESS);
   }
 
 }
