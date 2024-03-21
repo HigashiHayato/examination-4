@@ -1,12 +1,15 @@
 package com.example.demo.presentation;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.demo.application.AddressService;
 import com.example.demo.domain.Address;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +26,9 @@ class AddressControllerTest {
 
   private final Address ADDRESS =
       new Address(1, "1000000", "東京都", "新宿区", "中落合");
+
+  private final PostAddressRequest POST_ADDRESS_REQUEST =
+      new PostAddressRequest("1000000", "東京都", "豊島区", "長崎");
 
   @Autowired
   MockMvc mockMvc;
@@ -73,6 +79,21 @@ class AddressControllerTest {
         .andExpect(jsonPath("prefecture").value("東京都"))
         .andExpect(jsonPath("city").value("新宿区"))
         .andExpect(jsonPath("street_address").value("中落合"));
+  }
 
+  @Test
+  void POSTリクエストにより正常なデータを送った場合() throws Exception {
+    //setup
+    when(addressService.register(any()))
+        .thenReturn(89);
+
+    // execute & assert
+    mockMvc.perform(
+            MockMvcRequestBuilders.post("/v1/addresses")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(POST_ADDRESS_REQUEST))
+        )
+        .andExpect(status().isCreated())
+        .andExpect(header().string("Location", "http://localhost/v1/addresses/89"));
   }
 }
