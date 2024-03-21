@@ -32,7 +32,7 @@
         prefecture = #{prefecture, jdbcType=VARCHAR},
         city = #{city, jdbcType=VARCHAR},
         street_address = #{streetAddress, jdbcType=VARCHAR}
-        WHERE id = #{id, jdbcType=INTEGER}
+        WHERE id = CAST(#{id} AS INTEGER);
     </update>
 
 </mapper>

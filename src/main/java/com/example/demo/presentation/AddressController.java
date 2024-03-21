@@ -1,6 +1,7 @@
 package com.example.demo.presentation;
 
 import com.example.demo.application.AddressService;
+import com.example.demo.presentation.request.PatchAddressRequest;
 import com.example.demo.presentation.request.PostAddressRequest;
 import com.example.demo.presentation.response.AddressResponse;
 import com.example.demo.presentation.response.AddressesResponse;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,7 +55,7 @@ public class AddressController {
   /**
    * 新しい Address を登録するエンドポイントです.
    *
-   * @param address    登録する PostAddressRequest オブジェクト
+   * @param address 登録する PostAddressRequest オブジェクト
    * @param request HttpServletRequest
    * @return ResponseEntity オブジェクト
    */
@@ -72,5 +74,17 @@ public class AddressController {
         .toUri();
 
     return ResponseEntity.created(uri).build();
+  }
+
+  /**
+   * 指定された ID の Address を部分的に更新するエンドポイントです.
+   *
+   * @param address 更新する Address オブジェクト
+   * @param id      更新する Address の ID
+   */
+  @PatchMapping("v1/addresses/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void patch(@RequestBody PatchAddressRequest address, @PathVariable String id) {
+    addressService.update(address.convertToDto(), id);
   }
 }

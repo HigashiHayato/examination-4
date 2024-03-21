@@ -61,7 +61,7 @@ public record PostAddressRequest(
   }
 
   /**
-   * RequestBookDto へ変換します.
+   * RequestAddressDto へ変換します.
    *
    * @return RequestBookDto
    */
