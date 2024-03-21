@@ -78,6 +78,10 @@ public class AddressService {
 
     Address existingAddress = mapper.select(id);
 
+    if (isNull(existingAddress)) {
+      throw new AddressNotFoundException(id);
+    }
+
     Address postAddress = new Address(
         id,
         isNull(address.zipCode()) ? existingAddress.zipCode() : address.zipCode(),
