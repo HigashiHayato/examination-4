@@ -8,17 +8,17 @@
 
     <select id="select" resultType="com.example.demo.domain.Address">
         SELECT * FROM addresses
-        WHERE id = #{id};
+        WHERE id = CAST(#{id} AS INTEGER);
     </select>
 
     <insert id="insert" parameterType="com.example.demo.domain.Address">
         INSERT INTO addresses (id, zip_code, prefecture, city, street_address)
         VALUES (
-        #{id, jdbcType=VARCHAR},
+        #{id, jdbcType=INTEGER},
         #{zipCode, jdbcType=VARCHAR},
         #{prefecture, jdbcType=VARCHAR},
         #{city, jdbcType=VARCHAR},
-        #{streetAddress, jdbcType=INTEGER}
+        #{streetAddress, jdbcType=VARCHAR}
         )
     </insert>
 
