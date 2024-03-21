@@ -68,4 +68,14 @@ class AddressMapperTest {
     // execute & assert
     assertEquals(1, sut.insert(address));
   }
+
+  @Test
+  void テーブルの行を更新できる場合() {
+    // setup
+    Address address = new Address("2", "1000000", "神奈川県", "横浜市", "旭区");
+
+    // execute
+    // assert
+    assertEquals(1, sut.update(address));
+  }
 }
