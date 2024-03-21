@@ -66,6 +66,6 @@ class AddressMapperTest {
     Address address = new Address("2", "1000000", "東京都", "豊島区", "長崎");
 
     // execute & assert
-    assertEquals(1, sut.insert(ADDRESS));
+    assertEquals(1, sut.insert(address));
   }
 }

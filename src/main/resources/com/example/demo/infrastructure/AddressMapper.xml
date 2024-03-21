@@ -11,4 +11,15 @@
         WHERE id = #{id};
     </select>
 
+    <insert id="insert" parameterType="com.example.demo.domain.Address">
+        INSERT INTO addresses (id, zip_code, prefecture, city, street_address)
+        VALUES (
+        #{id, jdbcType=VARCHAR},
+        #{zipCode, jdbcType=VARCHAR},
+        #{prefecture, jdbcType=VARCHAR},
+        #{city, jdbcType=VARCHAR},
+        #{streetAddress, jdbcType=INTEGER}
+        )
+    </insert>
+
 </mapper>

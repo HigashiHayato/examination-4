@@ -30,7 +30,7 @@ class AddressNotFoundExceptionHandlerTest {
 
     AddressErrorResponse expected = new AddressErrorResponse(
         "0003",
-        "specified book [id = 99] is not found.",
+        "specified address [id = 99] is not found.",
         List.of()
     );
     // execute

@@ -29,7 +29,7 @@ public class AddressNotFoundExceptionHandler {
 
     AddressErrorResponse response = new AddressErrorResponse(
         "0003",
-        "specified book [id = " + exception.getMessage() + "] is not found.",
+        "specified address [id = " + exception.getMessage() + "] is not found.",
         List.of()
     );
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);

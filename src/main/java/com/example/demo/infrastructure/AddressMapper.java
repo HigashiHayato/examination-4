@@ -25,5 +25,11 @@ public interface AddressMapper {
    */
   Address select(String id);
 
-
+  /**
+   * 新しい Address を挿入します.
+   *
+   * @param address 挿入する Address オブジェクト
+   * @return 挿入が成功した場合は1、それ以外の場合は0
+   */
+  int insert(Address address);
 }
