@@ -103,4 +103,16 @@ class AddressMapperTest {
     // assert
     assertEquals(0, actual);
   }
+
+  @Test
+  @DataSet(value = "datasets/setup/address.yml")
+  @ExpectedDataSet(value = "datasets/expected/address.yml")
+  void テーブルにあるデータのうち最大のidを取得できる() {
+    // setup
+    // execute
+    Integer actual = sut.getMaxId();
+
+    // assert
+    assertEquals(1, actual);
+  }
 }

@@ -90,6 +90,18 @@ class AddressServiceTest {
   }
 
   @Test
+  void データがないテーブルに挿入する場合() {
+    // setup
+    when(mapper.getMaxId()).thenReturn(null);
+
+    // execute
+    String actual = sut.register(REQUEST_ADDRESS_DTO);
+
+    // assert
+    assertEquals("1", actual);
+  }
+
+  @Test
   void 行を更新する際指定したidがテーブルに存在する場合() {
     // setup
     when(mapper.select("1")).thenReturn(ADDRESS);

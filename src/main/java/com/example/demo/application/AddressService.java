@@ -54,7 +54,14 @@ public class AddressService {
    */
   public String register(RequestAddressDto address) {
 
-    String nextId = String.valueOf(mapper.getMaxId() + 1);
+    Integer maxId = mapper.getMaxId();
+    String nextId = null;
+
+    if (isNull(maxId)) {
+      nextId = "1";
+    } else {
+      nextId = String.valueOf(maxId + 1);
+    }
 
     mapper.insert(
         new Address(
