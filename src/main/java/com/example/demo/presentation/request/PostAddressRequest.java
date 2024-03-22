@@ -4,6 +4,7 @@ import static java.util.Objects.isNull;
 
 import com.example.demo.application.dto.RequestAddressDto;
 import com.example.demo.presentation.exception.NullPostRequestException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,13 @@ import java.util.List;
  * @param streetAddress 以降の住所
  */
 public record PostAddressRequest(
+    @JsonProperty("zip_code")
     String zipCode,
+    @JsonProperty("prefecture")
     String prefecture,
+    @JsonProperty("city")
     String city,
+    @JsonProperty("street_address")
     String streetAddress
 ) {
 

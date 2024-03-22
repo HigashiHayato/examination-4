@@ -1,6 +1,7 @@
 package com.example.demo.presentation.request;
 
 import com.example.demo.application.dto.RequestAddressDto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * PATCH 処理における住所を表すレコードクラスです.
@@ -11,9 +12,13 @@ import com.example.demo.application.dto.RequestAddressDto;
  * @param streetAddress 以降の住所
  */
 public record PatchAddressRequest(
+    @JsonProperty("zip_code")
     String zipCode,
+    @JsonProperty("prefecture")
     String prefecture,
+    @JsonProperty("city")
     String city,
+    @JsonProperty("street_address")
     String streetAddress
 ) {
 
