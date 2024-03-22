@@ -35,4 +35,9 @@
         WHERE id = CAST(#{id} AS INTEGER);
     </update>
 
+    <delete id="delete">
+        DELETE FROM addresses
+        WHERE id = CAST(#{id} AS INTEGER)
+    </delete>
+
 </mapper>

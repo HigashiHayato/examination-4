@@ -47,4 +47,12 @@ public interface AddressMapper {
    * @return 更新が成功した場合は1、それ以外の場合は0
    */
   int update(Address address);
+
+  /**
+   * 指定された ID の Address を削除します.
+   *
+   * @param id 削除する Address の ID
+   * @return 削除が成功した場合は1、それ以外の場合は0
+   */
+  int delete(String id);
 }
