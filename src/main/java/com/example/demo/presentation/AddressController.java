@@ -99,4 +99,15 @@ public class AddressController {
   public void delete(@PathVariable String id) {
     addressService.delete(id);
   }
+
+  /**
+   * "HIGASHI" という文字列を返す標準のエンドポイントです.
+   *
+   * @return "HIGASHI"
+   */
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public String standard() {
+    return "HIGASHI";
+  }
 }

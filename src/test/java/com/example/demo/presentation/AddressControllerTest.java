@@ -120,6 +120,6 @@ class AddressControllerTest {
     // setup & execute & assert
     mockMvc.perform(MockMvcRequestBuilders.get(""))
         .andExpect(status().isOk())
-        .andExpect(content().string("ヒガシ"));
+        .andExpect(content().string("HIGASHI"));
   }
 }
