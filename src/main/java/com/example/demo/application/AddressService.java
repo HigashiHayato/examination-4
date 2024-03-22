@@ -92,4 +92,13 @@ public class AddressService {
 
     mapper.update(postAddress);
   }
+
+  /**
+   * 指定された ID の Address を削除します.
+   *
+   * @param id 削除対象の Address の ID
+   */
+  public void delete(String id) {
+      int deleteStatusCode = mapper.delete(id);
+  }
 }
