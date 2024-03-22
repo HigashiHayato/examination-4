@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -86,5 +87,16 @@ public class AddressController {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void patch(@RequestBody PatchAddressRequest address, @PathVariable String id) {
     addressService.update(address.convertToDto(), id);
+  }
+
+  /**
+   * 指定された ID の Address を削除するエンドポイントです.
+   *
+   * @param id 削除する Address の ID
+   */
+  @DeleteMapping("v1/addresses/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void delete(@PathVariable String id) {
+    addressService.delete(id);
   }
 }
