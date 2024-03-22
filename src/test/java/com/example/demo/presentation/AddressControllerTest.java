@@ -114,4 +114,12 @@ class AddressControllerTest {
     mockMvc.perform(MockMvcRequestBuilders.delete("/v1/addresses/1"))
         .andExpect(status().isNoContent());
   }
+
+  @Test
+  void ルートURLにアクセスした場合() throws Exception {
+    // setup & execute & assert
+    mockMvc.perform(MockMvcRequestBuilders.get(""))
+        .andExpect(status().isOk())
+        .andExpect(content().string("ヒガシ"));
+  }
 }
