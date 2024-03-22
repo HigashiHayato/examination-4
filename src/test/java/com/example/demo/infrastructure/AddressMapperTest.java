@@ -80,4 +80,27 @@ class AddressMapperTest {
     // assert
     assertEquals(1, sut.update(address));
   }
+
+  @Test
+  @DataSet(value = "datasets/setup/address.yml")
+  @ExpectedDataSet(value = "datasets/expected/address-delete.yml")
+  void テーブルの指定した行を削除できる場合() {
+    // setup & execute
+    int actual = sut.delete("1");
+
+    // assert
+    assertEquals(1, actual);
+  }
+
+  @Test
+  @DataSet(value = "datasets/setup/address.yml")
+  @ExpectedDataSet(value = "datasets/expected/address.yml")
+  void テーブルの指定した行が存在しておらず削除できない場合() {
+    // setup
+    // execute
+    int actual = sut.delete("0");
+
+    // assert
+    assertEquals(0, actual);
+  }
 }
