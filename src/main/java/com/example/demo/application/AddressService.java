@@ -73,6 +73,7 @@ public class AddressService {
    *
    * @param address 更新する Address の情報
    * @param id      更新対象の Address の ID
+   * @throws AddressNotFoundException 指定された ID の Address が存在しない場合
    */
   public void update(RequestAddressDto address, String id) {
 
@@ -97,8 +98,13 @@ public class AddressService {
    * 指定された ID の Address を削除します.
    *
    * @param id 削除対象の Address の ID
+   * @throws AddressNotFoundException 指定された ID の Address が存在しない場合
    */
   public void delete(String id) {
-      int deleteStatusCode = mapper.delete(id);
+    int deleteStatusCode = mapper.delete(id);
+
+    if (deleteStatusCode == 0) {
+      throw new AddressNotFoundException(id);
+    }
   }
 }
