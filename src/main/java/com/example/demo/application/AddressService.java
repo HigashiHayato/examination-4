@@ -5,7 +5,7 @@ import static java.util.Objects.isNull;
 import com.example.demo.application.dto.RequestAddressDto;
 import com.example.demo.application.exception.AddressNotFoundException;
 import com.example.demo.domain.Address;
-import com.example.demo.domain.mapper.AddressMapper;
+import com.example.demo.domain.repository.AddressRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AddressService {
 
-  private final AddressMapper mapper;
+  private final AddressRepository repository;
 
   /**
    * 全ての Address を取得します.
@@ -25,7 +25,7 @@ public class AddressService {
    * @return 全ての Address のリスト
    */
   public List<Address> retrieveAll() {
-    return mapper.selectAll();
+    return repository.selectAllAddress();
   }
 
   /**
@@ -37,7 +37,7 @@ public class AddressService {
    */
   public Address retrieve(String id) {
 
-    Address address = mapper.select(id);
+    Address address = repository.selectAddressById(id);
 
     if (isNull(address)) {
       throw new AddressNotFoundException(id);
@@ -54,7 +54,7 @@ public class AddressService {
    */
   public String register(RequestAddressDto address) {
 
-    Integer maxId = mapper.getMaxId();
+    Integer maxId = repository.selectMaxId();
     String nextId = null;
 
     if (isNull(maxId)) {
@@ -63,7 +63,7 @@ public class AddressService {
       nextId = String.valueOf(maxId + 1);
     }
 
-    mapper.insert(
+    repository.insertAddress(
         new Address(
             Integer.parseInt(nextId),
             address.zipCode(),
@@ -84,7 +84,7 @@ public class AddressService {
    */
   public void update(RequestAddressDto address, String id) {
 
-    Address existingAddress = mapper.select(id);
+    Address existingAddress = repository.selectAddressById(id);
 
     if (isNull(existingAddress)) {
       throw new AddressNotFoundException(id);
@@ -98,7 +98,7 @@ public class AddressService {
         isNull(address.streetAddress()) ? existingAddress.streetAddress() : address.streetAddress()
     );
 
-    mapper.update(postAddress);
+    repository.updateAddress(postAddress);
   }
 
   /**
@@ -108,7 +108,7 @@ public class AddressService {
    * @throws AddressNotFoundException 指定された ID の Address が存在しない場合
    */
   public void delete(String id) {
-    int deleteStatusCode = mapper.delete(id);
+    int deleteStatusCode = repository.deleteAddress(id);
 
     if (deleteStatusCode == 0) {
       throw new AddressNotFoundException(id);
