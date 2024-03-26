@@ -34,7 +34,7 @@ public interface AddressRepository {
   /**
    * テーブル内の最大の Address ID 取得におけるマッパーのメソッドを呼び出します.
    *
-   * @return @return 最大の Address ID
+   * @return 最大の Address ID
    */
   public Integer selectMaxId();
 
