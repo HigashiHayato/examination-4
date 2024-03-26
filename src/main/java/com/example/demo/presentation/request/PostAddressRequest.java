@@ -46,13 +46,6 @@ public record PostAddressRequest(
     this.city = city;
     this.streetAddress = streetAddress;
 
-    List<String> nullList = createNullList();
-    if (!nullList.isEmpty()) {
-      throw new NullPostRequestException(nullList);
-    }
-  }
-
-  private List<String> createNullList() {
     List<String> nullList = new ArrayList<>();
 
     if (isNull(zipCode)) {
@@ -67,7 +60,9 @@ public record PostAddressRequest(
     if (isNull(streetAddress)) {
       nullList.add("streetAddress");
     }
-    return nullList;
+    if (!nullList.isEmpty()) {
+      throw new NullPostRequestException(nullList);
+    }
   }
 
   /**
