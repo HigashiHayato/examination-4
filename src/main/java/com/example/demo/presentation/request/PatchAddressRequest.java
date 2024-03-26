@@ -25,7 +25,7 @@ public record PatchAddressRequest(
   /**
    * RequestAddressDto へ変換します.
    *
-   * @return RequestBookDto
+   * @return RequestAddressDto
    */
   public RequestAddressDto convertToDto() {
     return new RequestAddressDto(zipCode, prefecture, city, streetAddress);
