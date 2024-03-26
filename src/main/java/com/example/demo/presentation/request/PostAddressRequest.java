@@ -7,6 +7,7 @@ import com.example.demo.presentation.exception.NullPostRequestException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * POST 処理における住所を表すレコードクラスです.
@@ -18,12 +19,16 @@ import java.util.List;
  */
 public record PostAddressRequest(
     @JsonProperty("zip_code")
+    @Length(max = 7, message = "文字数超過 zipCode は 7 文字以下")
     String zipCode,
     @JsonProperty("prefecture")
+    @Length(max = 20, message = "文字数超過 prefecture は 20 文字以下")
     String prefecture,
     @JsonProperty("city")
+    @Length(max = 20, message = "文字数超過 city は 20 文字以下")
     String city,
     @JsonProperty("street_address")
+    @Length(max = 100, message = "文字数超過 streetAddress は 20 文字以下")
     String streetAddress
 ) {
 
