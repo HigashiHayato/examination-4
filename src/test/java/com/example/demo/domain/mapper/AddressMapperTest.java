@@ -1,4 +1,4 @@
-package com.example.demo.infrastructure;
+package com.example.demo.domain.mapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
