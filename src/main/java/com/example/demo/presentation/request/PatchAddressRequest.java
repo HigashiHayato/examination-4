@@ -14,16 +14,16 @@ import org.hibernate.validator.constraints.Length;
  */
 public record PatchAddressRequest(
     @JsonProperty("zip_code")
-    @Length(max = 7, message = "文字数超過 zipCode は 7 文字以下")
+    @Length(max = 7, message = "zipCode は 7 文字以下")
     String zipCode,
     @JsonProperty("prefecture")
-    @Length(max = 20, message = "文字数超過 prefecture は 20 文字以下")
+    @Length(max = 20, message = "prefecture は 20 文字以下")
     String prefecture,
     @JsonProperty("city")
-    @Length(max = 20, message = "文字数超過 city は 20 文字以下")
+    @Length(max = 20, message = "city は 20 文字以下")
     String city,
     @JsonProperty("street_address")
-    @Length(max = 100, message = "文字数超過 streetAddress は 20 文字以下")
+    @Length(max = 100, message = "streetAddress は 20 文字以下")
     String streetAddress
 ) {
 

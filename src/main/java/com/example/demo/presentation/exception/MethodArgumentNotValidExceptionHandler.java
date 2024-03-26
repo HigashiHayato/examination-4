@@ -24,12 +24,13 @@ public class MethodArgumentNotValidExceptionHandler {
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ResponseEntity<AddressErrorResponse> handleMethodArgumentNotValidException(
-      MethodArgumentNotValidException exception) {
+      MethodArgumentNotValidException exception
+  ) {
 
     AddressErrorResponse response = new AddressErrorResponse(
         "",
         "request validation error is occurred.",
-        List.of(exception.getMessage())
+        List.of("文字数超過：" + exception.getMessage())
     );
 
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
