@@ -4,14 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import com.example.demo.domain.Address;
-import com.example.demo.domain.mapper.AddressMapper;
+import com.example.demo.infrastructure.mapper.AddressMapper;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.context.expression.AnnotatedElementKey;
 
 class AddressRepositoryImplTest {
 

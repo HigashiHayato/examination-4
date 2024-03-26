@@ -1,4 +1,4 @@
-package com.example.demo.domain.mapper;
+package com.example.demo.infrastructure.mapper;
 
 import com.example.demo.domain.Address;
 import java.util.List;

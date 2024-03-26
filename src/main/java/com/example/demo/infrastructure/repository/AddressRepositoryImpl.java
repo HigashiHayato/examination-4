@@ -1,7 +1,7 @@
 package com.example.demo.infrastructure.repository;
 
 import com.example.demo.domain.Address;
-import com.example.demo.domain.mapper.AddressMapper;
+import com.example.demo.infrastructure.mapper.AddressMapper;
 import com.example.demo.domain.repository.AddressRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
