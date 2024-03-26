@@ -1,13 +1,14 @@
-package com.example.demo.domain.mapper;
+package com.example.demo.infrastructure.mapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.example.demo.domain.Address;
-import com.example.demo.infrastructure.mapper.AddressMapper;
 import com.github.database.rider.core.api.configuration.DBUnit;
+import com.github.database.rider.core.api.connection.ConnectionHolder;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.junit5.api.DBRider;
+import java.sql.DriverManager;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,12 @@ class AddressMapperTest {
   private static final Address ADDRESS =
       new Address(1, "1000000", "東京都", "新宿区", "中落合");
 
-//  private static final String DB_URL = "jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
-//  private static final String DB_USER = "sa";
-//  private static final String DB_PASSWORD = "sa";
-//
-//  private static final ConnectionHolder connectionHolder =
-//      () -> DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+  private static final String DB_URL = "jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
+  private static final String DB_USER = "sa";
+  private static final String DB_PASSWORD = "sa";
+
+  private static final ConnectionHolder connectionHolder =
+      () -> DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
   @Autowired
   AddressMapper sut;
