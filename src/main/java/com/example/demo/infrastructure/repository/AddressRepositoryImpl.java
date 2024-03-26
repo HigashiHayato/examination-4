@@ -5,11 +5,13 @@ import com.example.demo.domain.mapper.AddressMapper;
 import com.example.demo.domain.repository.AddressRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 /**
  * AddressRepository インターフェースの実装クラス.
  */
 @RequiredArgsConstructor
+@Repository
 public class AddressRepositoryImpl implements AddressRepository {
 
   private final AddressMapper mapper;

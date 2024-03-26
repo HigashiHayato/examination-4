@@ -3,6 +3,7 @@ package com.example.demo.infrastructure;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.example.demo.domain.Address;
+import com.example.demo.domain.mapper.AddressMapper;
 import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;

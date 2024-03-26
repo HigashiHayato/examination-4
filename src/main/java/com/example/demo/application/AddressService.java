@@ -5,7 +5,7 @@ import static java.util.Objects.isNull;
 import com.example.demo.application.dto.RequestAddressDto;
 import com.example.demo.application.exception.AddressNotFoundException;
 import com.example.demo.domain.Address;
-import com.example.demo.infrastructure.AddressMapper;
+import com.example.demo.domain.mapper.AddressMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

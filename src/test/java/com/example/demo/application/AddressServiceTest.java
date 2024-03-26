@@ -10,7 +10,7 @@ import static org.mockito.Mockito.when;
 import com.example.demo.application.dto.RequestAddressDto;
 import com.example.demo.application.exception.AddressNotFoundException;
 import com.example.demo.domain.Address;
-import com.example.demo.infrastructure.AddressMapper;
+import com.example.demo.domain.repository.AddressRepository;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ class AddressServiceTest {
   private AddressService sut;
 
   @Mock
-  private AddressMapper mapper;
+  private AddressRepository repository;
 
   @BeforeEach
   public void setup() {
@@ -44,7 +44,7 @@ class AddressServiceTest {
         ADDRESS
     );
 
-    when(mapper.selectAll()).thenReturn(addressList);
+    when(repository.selectAllAddress()).thenReturn(addressList);
 
     // execute
     List<Address> actual = sut.retrieveAll();
@@ -56,7 +56,7 @@ class AddressServiceTest {
   @Test
   void 選択した住所idが存在する場合() {
     // setup
-    when(mapper.select(any())).thenReturn(ADDRESS);
+    when(repository.selectAddressById(any())).thenReturn(ADDRESS);
 
     // execute
     Address actual = sut.retrieve("1");
@@ -68,7 +68,7 @@ class AddressServiceTest {
   @Test
   void 選択した住所idが存在しない場合() {
     // setup
-    when(mapper.select(any())).thenReturn(null);
+    when(repository.selectAddressById(any())).thenReturn(null);
 
     // execute
     // assert
@@ -80,7 +80,7 @@ class AddressServiceTest {
   @Test
   void データを挿入した際挿入したidが返される() {
     // setup
-    when(mapper.getMaxId()).thenReturn(88);
+    when(repository.selectMaxId()).thenReturn(88);
 
     // execute
     String actual = sut.register(REQUEST_ADDRESS_DTO);
@@ -92,7 +92,7 @@ class AddressServiceTest {
   @Test
   void データがないテーブルに挿入する場合() {
     // setup
-    when(mapper.getMaxId()).thenReturn(null);
+    when(repository.selectMaxId()).thenReturn(null);
 
     // execute
     String actual = sut.register(REQUEST_ADDRESS_DTO);
@@ -104,19 +104,19 @@ class AddressServiceTest {
   @Test
   void 行を更新する際指定したidがテーブルに存在する場合() {
     // setup
-    when(mapper.select("1")).thenReturn(ADDRESS);
+    when(repository.selectAddressById("1")).thenReturn(ADDRESS);
 
     // execute
     sut.update(REQUEST_ADDRESS_DTO, "1");
 
     // assert
-    verify(mapper, times(1)).update(ADDRESS);
+    verify(repository, times(1)).updateAddress(ADDRESS);
   }
 
   @Test
   void 行を更新する際指定したidがテーブルに存在しない場合() {
     // setup
-    when(mapper.select("99")).thenReturn(null);
+    when(repository.selectAddressById("99")).thenReturn(null);
 
     // execute
     // assert
@@ -128,19 +128,19 @@ class AddressServiceTest {
   @Test
   void 行を削除する際指定したidがテーブルに存在する場合() {
     // setup
-    when(mapper.delete("1")).thenReturn(1);
+    when(repository.deleteAddress("1")).thenReturn(1);
 
     // execute
     sut.delete("1");
 
     // assert
-    verify(mapper, times(1)).delete("1");
+    verify(repository, times(1)).deleteAddress("1");
   }
 
   @Test
   void 行を削除する際指定したidがテーブルに存在しない場合() {
     // setup
-    when(mapper.delete(any())).thenReturn(0);
+    when(repository.deleteAddress(any())).thenReturn(0);
 
     // execute & assert
     assertThatThrownBy(() -> sut.delete("99"))
